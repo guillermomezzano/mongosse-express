@@ -1,6 +1,3 @@
 # package directories
 node_modules
-.env
-.env.*
-.vscode
-*.txt
+
