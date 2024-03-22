@@ -9,7 +9,7 @@ require("./config/config.mongoose");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Aquí es donde importamos la función de rutas de usuarios desde nuestro archivo user.routes.js
+// Aquí es donde importamos la función de rutas de usuarios desde nuestro archivo student.routes.js
 //Luego, esta función se invoca pasando la instancia de la aplicación app como argumento.
 const apiRoutes = require("./routes/student.routes");
 apiRoutes(app);
