@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const studentSchema = new mongoose.Schema({
   nombre: {
-    type: String, //cada nuevo documento se formateara asi con un name y age
+    type: String, //cada nuevo documento se formateara asi
     required: [true, "nombre obligatorio"],
     minlength: [3, "debe tener un minimo de 3 caracateres"],
   },
@@ -21,8 +21,6 @@ const studentSchema = new mongoose.Schema({
 });
 
 //crear una función constructora para nuestro modelo y almacenarla en la variable 'Student'
-const Student = mongoose.model("Student", studentSchema); // se crea variable pelicula
+const Student = mongoose.model("Student", studentSchema);
 //para exportar la configuracion
-// const Comentarios = mongoose.model("peliculas", ComentariosSchema);
-// module.exports = Comentarios;
-module.exports = Student; // Exportar la variable Student nos permitirá importar
+module.exports = Student; // Exportar la variable Student

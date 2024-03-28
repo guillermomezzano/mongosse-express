@@ -29,7 +29,7 @@ module.exports.createStudent = async (req, res) => {
   } catch (error) {
     res.json({
       message: "no hemos podido encontrar los estudiantes",
-      error: err,
+      error: error,
     });
   }
 };
