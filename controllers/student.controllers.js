@@ -2,7 +2,7 @@ const Student = require("../model/student.model.js");
 
 module.exports.findAllStudent = (req, res) => {
   Student.find()
-    .then((allStudent) => res.json({ allStudent }))
+    .then((allStudent) => res.json(allStudent))
     .catch((err) =>
       res.json({
         message: "no hemos podido encontrar los estudiantes",
@@ -25,10 +25,10 @@ module.exports.findAllStudent = (req, res) => {
 module.exports.createStudent = async (req, res) => {
   try {
     const newStudent = await Student.create(req.body);
-    res.json({ newStudent });
+    res.json(newStudent);
   } catch (error) {
     res.json({
-      message: "no hemos podido encontrar los estudiantes",
+      message: "debe llenar todos los campos",
       error: error,
     });
   }
@@ -36,7 +36,7 @@ module.exports.createStudent = async (req, res) => {
 
 module.exports.findOneStudent = (req, res) => {
   Student.findOne({ _id: req.params.id })
-    .then((findOneStudent) => res.json({ findOneStudent }))
+    .then((findOneStudent) => res.json(findOneStudent))
     .catch((err) =>
       res.json({
         message: "no hemos podido encontrar los estudiantes",
@@ -46,11 +46,7 @@ module.exports.findOneStudent = (req, res) => {
 };
 
 module.exports.updateStudent = (req, res) => {
-  Student.findOneAndUpdate(
-    { _id: req.params.id },
-    { nombre: req.body.nombre },
-    { new: true }
-  )
+  Student.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
     .then((updateStudent) => res.json({ updateStudent }))
     .catch((err) =>
       res.json({
@@ -62,7 +58,7 @@ module.exports.updateStudent = (req, res) => {
 
 module.exports.deleteStudent = (req, res) => {
   Student.deleteOne({ _id: req.params.id })
-    .then((deleteStudent) => res.json({ deleteStudent }))
+    .then((deleteStudent) => res.json(deleteStudent))
     .catch((err) =>
       res.json({
         message: "no hemos podido encontrar los estudiantes",
