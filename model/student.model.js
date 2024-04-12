@@ -17,21 +17,20 @@ const studentSchema = new mongoose.Schema({
     minlength: [3, "debe tener un minimo de 3 caracateres"],
   },
 
+  correo: {
+    type: String,
+    required: [true, "nombre obligatorio"],
+  },
+
   direccion: {
     type: String,
     required: [true, "tipo obligatorio"],
-  },
-
-  correo: {
-    type: String,
-    required: [true, "descripcion obligatorio"],
-    minlength: [3, "debe tener un minimo de 3 caracteres"],
   },
 
   skills: [skillSchema],
 });
 
 //crear una función constructora para nuestro modelo y almacenarla en la variable 'Student'
-const Student = mongoose.model("Student", studentSchema);
+const Student = mongoose.model("student", studentSchema);
 //para exportar la configuracion
 module.exports = Student; // Exportar la variable Student

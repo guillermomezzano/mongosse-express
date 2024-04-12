@@ -8,8 +8,8 @@ const cors = require("cors");
 require("./config/config.mongoose");
 // app va a utilizar esto para poder decodificar lo que viene el body con esto es capaz de leer el body
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // Aquí es donde importamos la función de rutas de usuarios desde nuestro archivo student.routes.js
 //Luego, esta función se invoca pasando la instancia de la aplicación app como argumento.
