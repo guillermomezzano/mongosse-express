@@ -1,4 +1,6 @@
 const Student = require("../model/student.model.js");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports.findAllStudent = (req, res) => {
   Student.find()
@@ -65,4 +67,35 @@ module.exports.deleteStudent = (req, res) => {
         error: err,
       })
     );
+};
+
+module.exports.login = (req, res) => {
+  console.log(req.body.email);
+  const { email, password } = req.body;
+  Student.findOne({ email })
+    .then((student) => {
+      if (!student) {
+        res.json({ msg: "estudiante no encontrado" });
+      } else {
+        bcrypt
+          .compare(password, student.password)
+          .then((passwordIsValid) => {
+            if (passwordIsValid) {
+              const secret = "cazuela";
+              const payload = {
+                _id: student._id,
+              };
+              const myJWT = jwt.sign(payload, secret);
+              res
+                .cookie("usertoken", myJWT, secret, { httpOnly: true })
+                .json({ id: payload, msg: "userToken creado", student });
+              console.log("hola este es myJWT", myJWT);
+            } else {
+              res.json({ msg: "password incorrecta" });
+            }
+          })
+          .catch((err) => res.json({ msg: "ssss" }));
+      }
+    })
+    .catch((err) => res.json(err));
 };

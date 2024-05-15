@@ -4,6 +4,7 @@ const {
   updateStudent,
   deleteStudent,
   findOneStudent,
+  login,
 } = require("../controllers/student.controllers");
 
 module.exports = (app) => {
@@ -12,4 +13,5 @@ module.exports = (app) => {
   app.put("/student/:id", updateStudent);
   app.delete("/student/:id", deleteStudent);
   app.get("/student/:id", findOneStudent);
+  app.post("/student/login", login);
 };
